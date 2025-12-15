@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mounahi's Login</title>
+    <link rel="stylesheet" href="../CSS/Connexion.css" />
+    <link rel="shortcut icon" href="logo.png" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-box active" id="login-form">
+       <form id="loginForm" action="http://localhost:3000/commande" method="post">
+  <h2>Commandez votre Plat</h2>
+
+  <input type="text" name="nom" placeholder="Nom" required />
+  <input type="text" name="prenom" placeholder="Prenom" required>
+  <input type="text" name="phone" placeholder="Numéro de Téléphone" required />
+  <input type="text" name="addresse" placeholder="Adresse" required />
+  <input type="email" name="email" placeholder="E-mail" required />
+  <input type="hidden" name="plat" id="platInput" >
+
+  
+          <!-- Message d'erreur ici -->
+          <span class="error-message" id="loginError"></span>
+          <button type="submit" name="btnLogin">Commander</button>
+
+
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const plat = params.get("plat") || "";
+  console.log("plat depuis URL :", plat);   // pour vérifier dans la console du navigateur
+  const input = document.getElementById("platInput");
+  if (input) {
+    input.value = plat;
+  }
+</script>
+          <script>
+  const loginForm = document.getElementById("loginForm");
+  const loginError = document.getElementById("loginError");
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    loginError.textContent = "";
+
+    const formData = new FormData(loginForm);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch("http://localhost:3000/commande", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        loginError.textContent = json.error || "Erreur lors de la commande.";
+        return;
+      }
+
+      // Succès → redirection
+      window.location.href = "confirmation.html";
+    } catch (err) {
+      console.error(err);
+      loginError.textContent = "Erreur réseau. Réessayez.";
+    }
+  });
+</script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bungee&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libertinus+Mono&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:"poppins",sans-serif;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.confirm-container {
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.confirm-container h1 {
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.confirm-container p {
+  margin: 5px 0;
+}
+
+.btn-retour {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #0a74da;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.btn-retour:hover {
+  background: #085bb3;
+}
